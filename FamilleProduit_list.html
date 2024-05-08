@@ -1,0 +1,41 @@
+<!-- ansade_app/templates/ansade_app/familleproduit_list.html -->
+
+{% extends "base.html" %}
+
+{% block title %}<title>Liste des Familles de Produits</title>{% endblock %}
+
+{% block content %}
+
+<div class="text-end pt-5">
+    <a href="{% url 'familleproduit_create' %}" class="btn btn-primary">Ajouter une Famille de Produits</a>
+</div>
+<h1 class="text-center">Liste des Familles de Produits</h1>
+
+{% if familleproduit_list %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for familleproduit in familleproduit_list %}
+            <tr>
+                <th scope="row">{{ familleproduit.id }}</th>
+                <td>{{ familleproduit.nom }}</td>
+                <td>
+                    <a href="{% url 'familleproduit_detail' familleproduit.id %}" class="btn btn-info">Voir</a> |
+                    <a href="{% url 'familleproduit_update' familleproduit.id %}" class="btn btn-primary">Modifier</a> |
+                    <a href="{% url 'familleproduit_delete' familleproduit.id %}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Il n'y a aucune famille de produits dans la base de données.</p>
+{% endif %}
+
+{% endblock %}

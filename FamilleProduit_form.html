@@ -1,0 +1,16 @@
+<!-- ansade_app/templates/ansade_app/familleproduit_form.html -->
+
+{% extends "base.html" %}
+
+{% block title %}<title>Ajouter une Famille de Produits</title>{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center">Ajouter une Famille de Produits</h1>
+<form action="" method="post" class="text-center p-5">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+</form>
+
+{% endblock %}

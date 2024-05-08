@@ -1,0 +1,45 @@
+<!-- ansade_app/templates/ansade_app/produit_list.html -->
+
+{% extends "base.html" %}
+
+{% block title %}<title>Liste des Produits</title>{% endblock %}
+
+{% block content %}
+
+<div class="text-end pt-5">
+    <a href="{% url 'produit_create' %}" class="btn btn-primary">Ajouter un Produit</a>
+</div>
+<h1 class="text-center">Liste des Produits</h1>
+
+{% if produit_list %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Famille</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in produit_list %}
+            <tr>
+                <th scope="row">{{ produit.id }}</th>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.famille }}</td>
+                <td>
+                    <a href="{% url 'produit_detail' produit.id %}" class="btn btn-info">Voir</a> |
+                    <a href="{% url 'produit_update' produit.id %}" class="btn btn-primary">Modifier</a> |
+                    <a href="{% url 'produit_delete' produit.id %}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Il n'y a aucun produit dans la base de données.</p>
+{% endif %}
+
+{% endblock %}
